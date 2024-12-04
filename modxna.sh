@@ -7,16 +7,21 @@
 VERSION='1.6'
 
 # Check for required programs
-CPPTRAJ=`which cpptraj`
 if [ -z "$CPPTRAJ" ] ; then
-  echo -e "  \e[31mCPPTRAJ not found.\e[39m"
+  CPPTRAJ=`which cpptraj`
+  if [ -z "$CPPTRAJ" ] ; then
+    echo -e "  \e[31mCPPTRAJ not found.\e[39m"
+    exit 1
+  fi
+elif [ ! -f "$CPPTRAJ" ] ; then
+  echo -e "  \e[31mCPPTRAJ $CPPTRAJ not found.\e[39m"
   exit 1
 fi
 
 # CPPTRAJ version check
-cc_version=`$CPPTRAJ --internal-version | awk '{print substr($5,2);}'`
+cc_version=`$CPPTRAJ --version | awk '{print substr($3,2);}'`
 if [ -z "$cc_version" ] ; then
-  echo "  \e[31mError: Could not get version from cpptraj $CPPTRAJ.\e[39m"
+  echo -e "  \e[31mError: Could not get version from cpptraj $CPPTRAJ.\e[39m"
   exit 1
 fi
 #echo "DEBUG: $cc_version"
@@ -33,7 +38,7 @@ elif [ $cc_version_major -eq 6 -a $cc_version_minor -lt 26 ] ; then
   cc_version_ok=0
 fi
 if [ $cc_version_ok -eq 0 ] ; then
-  echo "  \e[31mError: CPPTRAJ version is too old. Require at least 6.26.0\e39m"
+  echo -e "  \e[31mError: CPPTRAJ version is too old. Require at least 6.26.0\e[39m"
   exit 1
 fi
 
