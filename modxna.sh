@@ -13,6 +13,20 @@ if [ -z "$CPPTRAJ" ] ; then
   exit 1
 fi
 
+cc_version=`$CPPTRAJ --version | awk '{print substr($3,2);}'`
+if [ -z "$cc_version" ] ; then
+  echo "   \e[31mError: Could not get version from cpptraj $CPPTRAJ.\e[39m"
+  exit 1
+fi
+#echo "DEBUG: $cc_version"
+#cc_version=`echo $cc_version | sed -e 's/-/./'`
+cc_version_major=`echo $cc_version | cut -d'.' -f1`
+cc_version_minor=`echo $cc_version | cut -d'.' -f2`
+cc_version_patch=`echo $cc_version | cut -d'.' -f3`
+#echo "DEBUG: CPPTRAJ version $cc_version major $cc_version_major minor $cc_version_minor revision $cc_version_patch"
+echo "CPPTRAJ version $cc_version_major.$cc_version_minor.$cc_version_patch detected."
+exit 0 # DEBUG
+
 LEAP=`which tleap`
 if [ -z "$LEAP" ] ; then
   echo -e "  \e[31mtleap not found.\e[39m"
