@@ -13,9 +13,10 @@ if [ -z "$CPPTRAJ" ] ; then
   exit 1
 fi
 
-cc_version=`$CPPTRAJ --version | awk '{print substr($3,2);}'`
+# CPPTRAJ version check
+cc_version=`$CPPTRAJ --internal-version | awk '{print substr($5,2);}'`
 if [ -z "$cc_version" ] ; then
-  echo "   \e[31mError: Could not get version from cpptraj $CPPTRAJ.\e[39m"
+  echo "  \e[31mError: Could not get version from cpptraj $CPPTRAJ.\e[39m"
   exit 1
 fi
 #echo "DEBUG: $cc_version"
@@ -25,6 +26,17 @@ cc_version_minor=`echo $cc_version | cut -d'.' -f2`
 cc_version_patch=`echo $cc_version | cut -d'.' -f3`
 #echo "DEBUG: CPPTRAJ version $cc_version major $cc_version_major minor $cc_version_minor revision $cc_version_patch"
 echo "CPPTRAJ version $cc_version_major.$cc_version_minor.$cc_version_patch detected."
+cc_version_ok=1
+if [ $cc_version_major -lt 6 ] ; then
+  cc_version_ok=0
+elif [ $cc_version_major -eq 6 -a $cc_version_minor -lt 26 ] ; then
+  cc_version_ok=0
+fi
+if [ $cc_version_ok -eq 0 ] ; then
+  echo "  \e[31mError: CPPTRAJ version is too old. Require at least 6.26.0\e39m"
+  exit 1
+fi
+
 exit 0 # DEBUG
 
 LEAP=`which tleap`
