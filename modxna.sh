@@ -19,18 +19,35 @@ elif [ ! -f "$CPPTRAJ" ] ; then
 fi
 
 # CPPTRAJ version check
-cc_version=`$CPPTRAJ --version | awk '{print substr($3,2);}'`
+cc_version=`$CPPTRAJ --version`
 if [ -z "$cc_version" ] ; then
   echo -e "  \e[31mError: Could not get version from cpptraj $CPPTRAJ.\e[39m"
   exit 1
 fi
 #echo "DEBUG: $cc_version"
+cc_version=`echo $cc_version | awk 'BEGIN{line=0;}{
+  if (line == 0 && $2 == "Version") {
+    print substr($3,2);
+    exit 0;
+  } else {
+    # Very old version.
+    line++;
+  }
+  if (line == 1 && $2 == "Trajectory") {
+    print substr($4,2);
+    exit 0;
+  }
+}'`
 #cc_version=`echo $cc_version | sed -e 's/-/./'`
 cc_version_major=`echo $cc_version | cut -d'.' -f1`
 cc_version_minor=`echo $cc_version | cut -d'.' -f2`
 cc_version_patch=`echo $cc_version | cut -d'.' -f3`
 #echo "DEBUG: CPPTRAJ version $cc_version major $cc_version_major minor $cc_version_minor revision $cc_version_patch"
-echo "CPPTRAJ version $cc_version_major.$cc_version_minor.$cc_version_patch detected."
+if [ -z "$cc_version_patch" ] ; then
+   echo -e "  \e[31mError: CPPTRAJ version from AmberTools $cc_version_major.$cc_version_minor is too old.\e[39m"
+   echo -e "  \e[31mError: Requires a more modern CPPTRAJ version, at least 6.26.0\e[39m"
+   exit 1
+fi
 cc_version_ok=1
 if [ $cc_version_major -lt 6 ] ; then
   cc_version_ok=0
@@ -42,8 +59,7 @@ if [ $cc_version_ok -eq 0 ] ; then
   exit 1
 fi
 
-exit 0 # DEBUG
-
+# Check LEAP
 LEAP=`which tleap`
 if [ -z "$LEAP" ] ; then
   echo -e "  \e[31mtleap not found.\e[39m"
@@ -96,6 +112,7 @@ echo "-----               modXNA                  -----"
 echo "----- Modified nucleotide residue Generator -----"
 echo "-------------------------------------------------"
 echo "modXNA.sh Version $VERSION"
+echo "CPPTRAJ version $cc_version_major.$cc_version_minor.$cc_version_patch detected."
 # ==============================================================================
 
 # Parse command line options
