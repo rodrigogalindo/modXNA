@@ -80,7 +80,7 @@ IS_5CAP=0
 IS_3CAP=0
 
 # Library path for the templates
-export DAT='/home/ros/work/modxna/git/modXNA'
+export DAT=$(pwd)
 export DATBB=$DAT'/dat/lib_backbone'
 export DATSU=$DAT'/dat/lib_sugar'
 export DATBA=$DAT'/dat/lib_base'
