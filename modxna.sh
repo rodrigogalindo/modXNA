@@ -436,8 +436,8 @@ EOF
 ###########################################
 source leaprc.protein.ff19SB
 source leaprc.DNA.OL15
-#source leaprc.RNA.OL3
-#source leaprc.gaff2
+source leaprc.RNA.OL3
+source leaprc.gaff
 ###########################################
 addpath $DAT/dat
 loadamberparams frcmod.modxna
@@ -454,8 +454,7 @@ EOF
     cat > tmp.opt.in<<EOF
 energy minimization
  &cntrl
-  imin=1,maxcyc=2000,ntx=1,ntwr=100,ntpr=10,
-  ioutfm=0,ntxo=1,cut=1000.0,ntb=0,igb=5,
+  imin=1,maxcyc=5000,ncyc=2500,ntx=1,ntwr=100,ntpr=10,ioutfm=0,ntxo=1,cut=1000.0,ntb=0,igb=5,
  &end
 EOF
 
@@ -471,6 +470,7 @@ EOF
 ###########################################
 source leaprc.protein.ff19SB
 source leaprc.DNA.OL15
+source leaprc.gaff
 ###########################################
 addpath $DAT/dat
 loadamberparams frcmod.modxna
