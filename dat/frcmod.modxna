@@ -1,4 +1,4 @@
-20250617 - modXNA modifications: see doi:10.1021/acs.jctc.4c01164
+20250313 - modXNA extended version based on parameters for the 107 modified nucleosides in RNA: see ../cmd/leaprc.modrna08
 MASS
 H  1.0080
 H1 1.0080
@@ -34,7 +34,6 @@ N3 14.010
 NA 14.010
 NB 14.010
 NC 14.010
-NE 14.010
 NO 14.010
 NT 14.010
 NY 14.010
@@ -48,7 +47,7 @@ S  32.060
 Se 78.960
 S2 32.060
 S6 32.060
-SO 32.060        2.900               same as s6
+SO 32.060
 SS 32.060
 F  19.000 
 Cl 35.450 
@@ -61,7 +60,6 @@ Br-CK   172.5   1.885   SOURCE4_SOURCE5     128      0.0078 - br-cc
 Cl-CM	192.7   1.7310      SOURCE1_SOURCE5     290      0.0098
 F -CM	368.1   1.33    SOURCE1_SOURCE5      35      0.0085
 I -CM	98.1    2.1700      SOURCE3_SOURCE5       7      0.0194
-NE-P	372.3   1.602       same as ne-py, penalty score=  2.9
 C -C*	481.8   1.3340      SOURCE1_SOURCE5    3727      0.0053
 C -CM	449.9	1.461	same as c -c2
 C -CN	340.2   1.4280      SOURCE1_SOURCE5    4559  0.0096
@@ -103,6 +101,7 @@ CA-S	244.0   1.7390              SOURCE3       2
 CA-S6	168.0    1.8700              SOUECE3       1
 CA-S2	362.6    1.6100              SOURCE2       1
 CA-SS	280	1.688	same as c2-ss
+CT-SO	280	1.688	same as c2-ss
 CB-C	449.9	1.439	same as c -c2
 CB-CA	411.7	1.403	same as ca-cc
 CB-CB	418.3	1.373	same as cc-cc
@@ -177,6 +176,8 @@ CZ-HA	448.2   1.0600              SOUECE3       1
 CZ-N1   891.5   1.153     SOURCE1_SOURCE5     481      0.0035
 CZ-NY	101.4	1.136	same as c1-n1
 OS-OH	109.1   1.5040              SOURCE3       3      0.0117
+OS-SO	227.4    1.8000              SOURCE3       3      0.0052
+SO-O2	226.0	 1.8100
 N -C	478.2	1.36	same as c -n
 N -CA	394.6   1.3520      SOURCE1_SOURCE5    2672      0.0030
 N -CT	330.6	1.447	same as c3-n
@@ -219,6 +220,7 @@ NC-CM	431.6	1.309	same as cc-nc
 NC-CQ	431.6	1.319	same as cc-nc
 NT-N2	219.3   1.442      SOURCE1_SOURCE5      48      0.0063
 NT-H	394.1	1.002	same as hn-n3
+NT-SO	369.1	1.647
 OF-CT  320.0    1.410
 OF-P   323.7    1.6360              SOURCE3       4	 0.0057
 O2-CT  284.8    1.4320      SOURCE1_SOURCE5   17971      0.0103
@@ -233,31 +235,19 @@ P -S    525.0    2.016      MacLennan&Darvesh; Can. J. Chem. 73, 1995
 P -SO	239.2    1.9340      SOURCE1_SOURCE5     173      0.0138
 P -CT	177.2    1.8390      SOURCE1_SOURCE5     408      0.0183
 P -N2	344.6    1.5990
+P -NT	345.0	 1.647
 S -CT	225.8	1.808	same as c3-ss
 O2-NO	172.2    1.4210      SOURCE4_SOURCE5     138      0.0070
 S6-N    283.3    1.7190      SOURCE4_SOURCE5      45      0.0154
 S6-NT	326.0    1.6720      SOURCE1_SOURCE5     243      0.0144
 S6-O	683.0    1.4530      SOURCE1_SOURCE5    2456      0.0105
+SO-O	398.5	1.454	same as o -ss
 SO-OH	418.0    1.5990              SOURCE3       3      0.0707
-P -NT	386.1    1.5640              SOURCE3       5      0.2161
-NT-SO	227.9    1.7930              SOURCE3      10      0.0421
-SO-O2  	312.4    1.6920      SOURCE3_SOURCE5      25      0.0189
-NE-SO   441.30   1.554       same as n2-s6, penalty score=  8.2
-CT-SO   233.50   1.808       same as c3-s6, penalty score=  0.0
-O -SO   512.70   1.453       same as  o-s6, penalty score=  0.0 
-ne-p5   438.40   1.605       same as ne-py, penalty score=  2.9
-os-CI   284.8    1.4320      SOURCE1_SOURCE5   17971      0.0103
 
 ANGLE
-NE-P -OS	84.100     102.400   same as n2-p5-oh, penalty score=  4.8
-NE-P -O    	83.000     113.530   same as n2-p5-o , penalty score=  2.8
-NE-SO-O2       114.1    109.81      SOURCE3_SOURCE5           13    1.0385
-NE-SO-CT        93.2       93.07              SOURCE3           10    1.8813
-P -NE-SO   	85.021     119.890   Calculated using p5-n2-s6, penalty score= 20.5
-NE-SO-O	       114.1      109.81      SOURCE3_SOURCE5           13    1.0385
-OS-P -NE	79.3      114.13              SOURCE3           11    8.9737
-O2-P -NE	79.3      114.13              SOURCE3           11    8.9737
-CT-OS-HO        65.13   107.39                2021     4480   0.7283
+OS-CT-F	        45.9    115.87
+S -C -CB	60.9	122.55
+CA-CM-CZ	64.4	108.69
 Br-CK-NB	80.6    121.58      SOURCE4_SOURCE5           19    0.8500
 Br-CK-N*	82.5    116.25              SOURCE5            5    0.0824
 Br-CM-N*	83.5    116.15              SOURCE5            5    0.0824
@@ -356,6 +346,7 @@ C*-CZ-NY	63.1	178.082	same as c2-c1-n1
 C*-CZ-N1	79.3    180.00            HF/6-31G*            1
 C*-OS-CA	67.8      118.68      SOURCE4_SOURCE5           49    2.2289
 C*-S2-CA	62.7      121.53         CORR_SOURCE5          270    1.0948
+CT-OH-P		62.8       98.56              SOURCE3            2    0.4558
 CA-C*-CB	67.7	105.741	same as ca-cc-cc
 CA-C*-CM	67.7	122.327	same as ca-cc-cc
 CA-C*-CT	64.3	127.527	same as c2-c2-c3
@@ -656,7 +647,7 @@ CT-NT-N2	83.5    110.80      SOURCE3_SOURCE5           91    1.4698
 CT-OH-HO	47.1	109.342	same as c3-oh-ho
 CT-OS-CT	62.1	109.128	same as c3-os-c3
 CT-OS-SO	67.1      119.89      SOURCE4_SOURCE5          312    1.5712
-CT-SO-O		93.7      108.61      SOURCE3_SOURCE5         1062    1.0758 c3-s6-o
+CT-SO-O		64.7	104.221	same as c3-ss-o
 CT-SO-OH	97.0       90.28      SOURCE4_SOURCE5           21    0.2709
 CQ-CB-CB	71.5    121.81              SOURCE3           10    0.3843
 CQ-N*-CQ	63.7      126.46      SOURCE3_SOURCE5         2025    1.8293
@@ -704,6 +695,7 @@ H1-CT-CM	47	110.537	same as c2-c3-hc
 H1-CT-H1	39.4	113.664	same as hc-c3-hc
 H1-CT-NT	49.4	110.495	same as hc-c3-n3
 H1-CT-O		47.5	104.387	Calculated with empirical approach
+H1-CT-SO	42.5	107.041	same as hc-c3-ss
 H4-C -O		54.3	119.649	same as ha-c -o
 H4-CA-OS	64.3      111.15              SOURCE3            1
 HA-CM-CM	50.3	117.77	same as c2-c2-hc
@@ -908,6 +900,9 @@ NT-CT-H2	47.5    110.36      SOURCE3_SOURCE5        11033    0.8531
 NT-CM-N2	110.7      123.46         CORR_SOURCE5          241    2.3941
 NT-CM-HA	64.8    120.99      SOURCE4_SOURCE5           77    1.9305
 NT-N2-H		67.7      108.56              SOURCE3           29    5.5708
+NT-SO-O2	66.6	  109.44
+CT-SO-O2	67.7	  109.87
+O2-SO-O2	65.0	  109.28
 O -C -CM	72.8	125.59	same as c2-c -o
 O -C -CT	68	124.332	same as c3-c -o
 O -C -HA	37.7    116.90      SOURCE3_SOURCE5         1456    0.6313
@@ -1082,28 +1077,21 @@ SO-P-OH	   59.3      112.00              SOURCE3            1
 SO-P-OS	   60.3      111.75              SOURCE3            1
 OH-P-N2	   109.8      120.60              SOURCE3            1
 N2-SO-CT   90.400     112.480   SOURCE4_SOURCE5           27    1.7086
-P -NT-SO   47.1      101.19              SOURCE3            1
-P -NT-H	   52.9      121.48              SOURCE3            3    2.9355
-O2-P -NT   84.7      110.60              SOURCE3            5    1.3133
-NT-P -OS   78.6      115.86              SOURCE3            3    3.2712
-NT-SO-CT   97.2       90.06              SOURCE3            4    0.4484
-NT-SO-O2   116.4      109.75              SOURCE3           10    2.6919
-SO-NT-H    72.3       90.51            HF/6-31G*            1
-CT-SO-O2   97.2       90.06              SOURCE3            4    0.4484
-O2-SO-O2   124.4       94.07      SOURCE3_SOURCE5            7    2.3843
-SO-CT-HC   42.9      107.50              SOURCE2            1
-H1-CT-SO   43.200     107.150   same as h1-c3-s6, penalty score=  0.0
-ne-p5-os   44.800     102.400   same as n2-p5-oh, penalty score=  4.8
-p5-ne-sy   78.500     131.840   same as px-ne-s , penalty score=  9.7
-ne-p5-o    44.200     113.530   same as n2-p5-o , penalty score=  2.8
-os-CI-CT   85.3      107.97      SOURCE3_SOURCE5        11384    1.3754
-os-CI-H1   62.4      109.78      SOURCE3_SOURCE5        19982    1.1092
-p5-os-CI   83.3      119.54      SOURCE3_SOURCE5          665    1.1338
+P -NT-H	   52.3      110.00              SOURCE3           10    1.0282
+P -NT-SO   58.2      126.11              SOURCE3            1
+O2-P -NT   67.6      106.34      SOURCE4_SOURCE5           24    0.9971
+NT-SO-O	   62.3	     106.70
+NT-P -OS   67.6      106.34      SOURCE4_SOURCE5           24    0.9971
+NT-SO-CT   70.0	     102.78
+SO-NT-H	   63.9	     108.85
+CT-OS-HO   53.0	     116.16
+CT-OS-CJ   49.4	     107.06
+C -CM-CZ   54.4	     119.65
+CM-CM-CZ   56.1	     121.81
+CM-CZ-CZ   99.9	     179.87
 
 DIHE
 NC-CQ-OS-CT   2    1.800       180.000           2.000      same as X-ca-oh-X
-X -P -NE-X    3	   3.0	       180.000		 3.000
-X -NE-SO-X    3    2    3.000       180.000           3.000
 X -P -SO-X    9   60.000       180.000           2.000      estimated  !!!
 CT-CT-OF-P    1	   0.337	 0.000		 3
 H1-CT-OF-P    1	   0.337	 0.000		 3
@@ -1114,6 +1102,7 @@ CT-CT-OF-P    1	   0.337	 0.000		 1
 X -O2-P -X    3    2.400         0.000           2.000
 X -CT-O2-X    3    1.150         0.000           3.000      JCC,7,(1986),230
 X -CV-CV-X    4    1.200       180.000           2.000
+X -CM-CZ-X    4    1.200       180.000           2.000
 X -CM-NB-X    2    9.60        180.0             2.000      same as X-CA-NC-X
 X -CA-S6-X    6    3.000         0.000           2.000
 X -C*-S2-X    1    0.000       180.000           2.000
@@ -1131,6 +1120,7 @@ X -CA-N -X    4    1.800       180.000           2.000
 X -N -S6-X    6    6.600       180.000           2.000
 X -NA-NB-X    4    9.000         0.000           2.000
 X -NT-S6-X    6   18.800         0.000           2.000
+X -CT-SO-X    1    0.117         0.000           3          c59 SS AUE=0.2210 RMSE=0.2792 TorType=3
 X -SO-OH-X    1    0.000       180.000           1          c185 SS AUE=1.7272 RMSE=2.1061 TorType=3
 X -CC-C*-X    4   11.500       180.000           2.000      statistic value
 X -CM-OH-X    2    2.100       180.000           2.000      parm99
@@ -1444,6 +1434,7 @@ CT-CT-N3-H    1    0.156         0.000           3.000      same as X -c3-n4-X
 CT-CT-NT-H    1    0.300         0.000           3.000      same as X -c3-n3-X
 CT-CT-OH-HO   1    0.167         0.000           3.000      same as X -c3-oh-X
 CT-CT-OS-CT   1    0.383         0.000           3.000      same as X -c3-os-X
+CT-CT-SO-O    1    0.333         0.000           3.000      same as X -c3-ss-X
 CT-N -C -N    1    2.500       180.000           2.000      same as X -c -n -X
 CT-N -C -O    1    2.500       180.000           2.000      same as X -c -n -X
 CT-N -C -OS   1    2.500       180.000           2.000      same as X -c -n -X
@@ -1537,6 +1528,7 @@ H1-CT-CT-N2   1    0.156         0.000           3.000      same as X -c3-c3-X
 H1-CT-CT-O    1    0.156         0.000           3.000      same as X -c3-c3-X
 H1-CT-N -H    1    0.000         0.000           2.000      same as X -c3-n -X
 H1-CT-NT-H    1    0.300         0.000           3.000      same as X -c3-n3-X
+H1-CT-SO-O    1    0.333         0.000           3.000      same as X -c3-ss-X
 H2-CT-CT-CT   1    0.156         0.000           3.000      same as X -c3-c3-X
 H4-CM-CM-C    1    6.650       180.000           2.000      same as X -c2-c2-X
 H4-CM-CM-CT   1    6.650       180.000           2.000      same as X -c2-c2-X
@@ -1852,6 +1844,7 @@ X -CQ-N2-X    1    0.0           0.              3.
 X -N2-OH-X    2    3.000         0.000           2.000
 X -N2-N2-X    4    9.000         0.000           2.000
 X -NT-N2-X    4    9.000         0.000           2.000
+X -NT-P -X    6    8.800       180.000           2.000      same as X -ca-p5-X , penalty score=  0.0
 X -N*-NB-X    2    9.600       180.000           2.000      estimated, intrpol.
 X -NB-NB-X    1    4.000       180.000           2.000      estimated, intrpol
 X -CV-CT-X    6    0.000         0.000           2.000      JCC,7,(1986),230
@@ -1859,17 +1852,7 @@ X -CB-CV-X    4   26.600       180.000           2.000      c2=c2 double bond, i
 CM-CM-P -O2   6    8.800       180.000           2.000      same as X -ca-p5-X , penalty score=  0.0
 HA-CM-P -O2   6    8.800       180.000           2.000      same as X -ca-p5-X , penalty score=  0.0
 X -CM-P -X    6    8.800       180.000           2.000      same as X -ca-p5-X , penalty score=  0.0
-X -NT-SO-X    4    4.200         0.000           2.000
-X -NT-P -X    4    4.400         0.000           3.000
-P -NE-SO-CT   3   20.000       180.000           2.000      same as X -n2-s6-X , penalty score=218.5
-P -NE-SO-O    3   20.000       180.000           2.000      same as X -n2-s6-X , penalty score=218.5
-CT-OS-P -O2   1    0.800         0.000          -2.000      same as c3-os-p5-o
-CT-OS-P -O2   1    0.550         0.000           3.000      same as c3-os-p5-o , penalty score=  0.0
-SO-NE-P -O2   3   20.000       180.000           2.000      same as X -n2-p5-X , penalty score=218.5
-SO-NE-P -OS   3   20.000       180.000           2.000      same as X -n2-p5-X , penalty score=218.5
-H1-CT-SO-NE   9    1.300         0.000           3.000      same as X -c3-s6-X , penalty score=  0.0
-H1-CT-SO-O    9    1.300         0.000           3.000      same as X -c3-s6-X , penalty score=  0.0
-X -os-CI-X    3    1.150         0.000           3.000      JCC,7,(1986),230
+X -NT-SO-X    1    1.930         0.000           3          c165 SS AUE=0.7711 RMSE=0.9257 TorType=3
 
 IMPROPER
 C -C -N -H          1.1          180.0         2.0          Using default value
@@ -1994,13 +1977,15 @@ HO          0.6000  0.0157             same as ho
 HP          1.4870  0.0157             same as hc
 DH          0.6000  0.0157             same as ho
 N           1.8240  0.1700             same as n
+N           1.8240  0.1700             same as n
+N           1.8240  0.1700             same as n
+N           1.8240  0.1700             same as n
 N*          1.8240  0.1700             same as na
 N1          1.8240  0.1700             same as nh
 N2          1.8240  0.1700             same as nh
 NA          1.8240  0.1700             same as na
 NB          1.8240  0.1700             same as nc
 NC          1.8240  0.1700             same as nc
-NE	    1.8993  0.0941	       same as ne
 NO          1.8886  0.0858
 NT          1.8240  0.1700             same as n3
 NY          1.8240  0.1700             same as n1
@@ -2013,7 +1998,7 @@ P           2.1000  0.2000             same as p4
 S           2.0000  0.2500             same as ss
 S6	    1.9825  0.2824
 S2	    1.9825  0.2824
-SO          1.9825  0.2824	       same as s6
+SO          2.0000  0.2500             same as ss
 SS          2.0000  0.2500             same as ss
 F           1.7029  0.0832
 Cl          1.9452  0.2638
