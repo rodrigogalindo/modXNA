@@ -492,6 +492,7 @@ CD-CM-NT	86.6    123.12      SOURCE4_SOURCE5           27    1.0384
 CD-CT-CT	65.5    111.93         CORR_SOURCE5         2280    1.5614
 CD-CT-H1	47.9    109.64      SOURCE3_SOURCE5         1145    0.8896
 CD-CT-N*	84.2    111.76         CORR_SOURCE5           51    1.5321
+CI-CT-HC	46.9    109.24      SOURCE3_SOURCE5         1145    0.8896
 CK-CT-HC	47.7    110.49      SOURCE3_SOURCE5         6781    0.7714
 CK-N2-CB	66.2	104.888	same as c2-n3-c2
 CK-NA-H     	30.0    120.00
@@ -633,6 +634,7 @@ CT-C -C*	65.0    117.29         CORR_SOURCE5          118    1.7737
 CT-CC-CA	64.3	129.279	same as c2-c2-c3
 CT-CC-O		84.9    116.80         CORR_SOURCE5          306    0.8990
 CT-C*-CV	65.3    125.19         CORR_SOURCE5           50    1.5929
+CT-CI-CT	66.4	113.22
 CT-CK-NB	83.2    120.95         CORR_SOURCE5          456    0.8756
 CT-CM-C		63.9	117.874	same as c -c2-c3
 CT-CM-CA        65.2    112.07      SOURCE4_SOURCE5        11982    1.5875
@@ -1060,6 +1062,7 @@ OS-SO-O		124.4   94.07      SOURCE3_SOURCE5            7    2.3843
 P -CM-CM	77.4    120.240 same as ca-ca-p5, penalty score=  0.0
 P -CM-HA	50.0    119.375 Calculated using p5-c2-ha, penalty score= 36.0
 P -CT-CT	80.5    112.02      SOURCE4_SOURCE5          346    1.5599
+P -CT-CI	81.2	112.01	    
 P -CT-HC	54.6    108.43      SOURCE3_SOURCE5          513    1.0539
 P -N2-CM   	78.4    134.23
 P -N2-SO   	111.8   120.60              SOURCE3            1
@@ -1820,6 +1823,7 @@ X -C*-S2-X    1    0.000       180.000           2.000
 X -CT-CK-X    6    0.000         0.000           3.000      same as X-c3-ca-X
 X -CT-O2-X    3    1.150         0.000           3.000      JCC,7,(1986),230
 X -CT-SO-X    1    0.117         0.000           3          c59 SS AUE=0.2210 RMSE=0.2792 TorType=3
+X -CT-P -X    4   26.600       180.000           2.000      c2=p4 double bond !!!
 X -CV-CA-X    1    6.650       180.000           2.000      same as X -c2-c2-X
 X -CV-CT-X    6    0.000         0.000           2.000      JCC,7,(1986),230
 X -CV-CV-X    4    1.200       180.000           2.000
