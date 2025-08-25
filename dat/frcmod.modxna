@@ -1,4 +1,4 @@
-modXNA frcmod - v20250624
+modXNA frcmod - v20250825
 MASS
 Br 79.900 
 C  12.010
@@ -706,6 +706,7 @@ CT-OS-CV	66.4    117.37         CORR_SOURCE5          411    1.1548
 CT-OS-HO   	53.0	116.16
 CT-OS-OH	84.0    108.11      SOURCE4_SOURCE5           34    0.5701
 CT-OS-SO	67.1    119.89      SOURCE4_SOURCE5          312    1.5712
+CT-P -OS	110.53	121.11
 CT-SO-O2	67.7	109.87
 CT-SO-O		64.7	104.221	same as c3-ss-o
 CT-SO-OH	97.0    90.28      SOURCE4_SOURCE5           21    0.2709
