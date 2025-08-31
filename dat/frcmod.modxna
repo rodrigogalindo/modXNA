@@ -1,4 +1,4 @@
-modXNA frcmod - v20250825
+modXNA frcmod - v20250901
 MASS
 Br 79.900 
 C  12.010
@@ -480,6 +480,7 @@ C -CT-N*	66.9	111.804	same as c -c3-n
 C -CT-NT	65.8	113.025	same as c -c3-n3
 C*-CT-NT	66.5	110.932	same as c2-c3-n3
 C -CT-OH	68.4	108.523	same as c -c3-oh
+C -CT-P		89.0	117.04
 C*-CV-C		67.7    118.69               5/2017            4    0.1767
 C*-CV-H4	46.9    115.14      SOURCE4_SOURCE5          122    0.7683
 C*-CV-NB	86.6    123.12      SOURCE4_SOURCE5           27    1.0384
